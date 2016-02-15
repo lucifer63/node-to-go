@@ -65,15 +65,15 @@ var onRequest = function(request,response) {
                         if (err) throw err;
                         userHtml += data;
                         cb(null);
-                    })     
-                }
+                    });
+                };
                 var css = function(cb) { 
                     fs.readFile('.\\css\\default.css','utf8',function(err,data) {
                         if (err) throw err;
                         userCss += data;
                         cb(null);
-                    })     
-                }
+                    });
+                };
 
                 userHtml += "<div><p>SAME RESULT HERE (())</p></div>";
                 async.parallel([html,css],function(err){
@@ -99,12 +99,12 @@ var onRequest = function(request,response) {
                     )
                 ));
                 callback(null);
-            }
+            };
             async.series([init,write], function(err) {
                 if (err) throw err;
                 response.end();
                 h.log('Request processed succesfully');
-            })
+            });
         }, list = function() {
             var rand = Math.ceil(Math.random()*10), result = [], i;
 
@@ -119,7 +119,7 @@ var onRequest = function(request,response) {
                     code: rand,
                     id: last_number
                 });
-            };
+            }
 
             response.write(JSON.stringify({ 'result': result }));
             response.end();
@@ -171,7 +171,7 @@ var onRequest = function(request,response) {
                     response.end(file,'binary');
                     h.log('User '+user.name+' ('+user.ip+') has downloaded the file \".' + request.url + '\" successfully' + browser);
                 }
-            }) 
+            });
         } else {
             response.writeHead(200,{ "Content-Type": 'text/plain'}); 
             response.end('Sorry, access is forbidden to this file type: \".' + url_f_extension + '\"');
@@ -184,9 +184,9 @@ var onRequest = function(request,response) {
             main();
         }
     }
-}
+};
 
 server = http.createServer(onRequest).listen(80);
 h.log("Server has started");
 
-arp.getARP(function(res) { h.log(JSON.stringify(res)); })
+arp.getARP(function(res) { h.log(JSON.stringify(res)); });

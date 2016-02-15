@@ -4,7 +4,13 @@ module.exports = function(grunt) {
 
         jshint: {
             scripts: {
-                src: 'js/**.js'
+                src: [ 
+                    'server.js',
+                    'js/**.js', 
+                    '!**/arp.js',
+                    '!**/async.js',
+                    '!**/*.min.js'
+                ]
             }
         },
 
@@ -12,17 +18,19 @@ module.exports = function(grunt) {
             scripts: {
                 expand: true,
                 cwd: 'js/',
-                src: '**.js',
-                dest: 'build/',
-                ext: '.min.js'
+                src: [ 
+                    '**.js',
+                    '!*.min.js'
+                ],
+                dest: 'build/js/'
             }
         },
 
         less: {
             styles: {
                 files: {
-                    'build/styles/admin.css': 'css/admin.less',
-                    'build/styles/default.css': 'css/default.less'
+                    'build/css/admin.css': 'css/admin.less',
+                    'build/css/default.css': 'css/default.less'
                 }
             }
         },

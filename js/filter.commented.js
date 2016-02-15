@@ -11,12 +11,12 @@ module.exports = function(messages, rules) {
 			from = [];
 			if (r.from.indexOf('*') != -1 || r.from.indexOf('?') != -1)
 				re_from = new RegExp('^' + r.from.replace(s,rs).replace(q,rq) + '$');
-		};
+		}
 		if (r.to) {
 			to = [];
 			if (r.to.indexOf('*') != -1 || r.to.indexOf('?') != -1)
 				re_to = new RegExp('^' + r.to.replace(s,rs).replace(q,rq) + '$');
-		};
+		}
 
 		for (m in messages) {
 			i = m;
@@ -34,11 +34,11 @@ module.exports = function(messages, rules) {
 
 			if (from) from.push(m.from);
 			if (to) to.push(m.to);
-		};
+		}
 
 		// clearing cache arrays and regexps before proceeding to the next rule
 		from = to = re_from = re_to = null;
-	};
+	}
 
 	return result;
 };
